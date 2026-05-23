@@ -1,0 +1,160 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --bg: #05050a;
+  --panel: rgba(20, 18, 40, 0.88);
+  --text: #fefefe;
+  --accent: #ff2964;
+  --accent-soft: rgba(255, 41, 100, 0.22);
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #2b032c 0%, #09020c 45%, #020207 100%);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.wrapper {
+  width: min(980px, 100%);
+}
+.screen {
+  background: linear-gradient(180deg, rgba(24,22,41,0.95), rgba(11,8,22,0.98));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255, 41, 100, 0.14), transparent 30%), radial-gradient(circle at bottom right, rgba(255, 41, 100, 0.08), transparent 32%);
+  pointer-events: none;
+}
+.status {
+  font-size: 0.95rem;
+  color: #b6b6d1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+.package-card {
+  display: grid;
+  gap: 20px;
+  padding: 32px;
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 26px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02), 0 30px 60px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+}
+.package-title {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #eaebff;
+}
+.decrypt-btn {
+  background: linear-gradient(135deg, #ff2b6b 0%, #ff6c9b 100%);
+  border: none;
+  border-radius: 999px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 18px 30px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  box-shadow: 0 18px 40px rgba(255, 41, 100, 0.25);
+}
+.decrypt-btn:hover {
+  transform: translateY(-2px);
+}
+.message-container {
+  margin-top: 34px;
+  display: grid;
+  gap: 26px;
+  place-items: center;
+  justify-items: center;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.message-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.decrypted-text {
+  font-size: clamp(2.4rem, 4vw, 4.8rem);
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 62, 126, 0.35);
+}
+.text-heart {
+  width: min(100%, 760px);
+  padding: 16px;
+  background: rgba(255, 41, 100, 0.06);
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 1px rgba(255, 41, 100, 0.12);
+  overflow-x: auto;
+  white-space: pre;
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(0.75rem, 0.95vw, 0.95rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+  color: #ffe3f2;
+  text-shadow: 0 0 16px rgba(255, 86, 154, 0.28);
+  margin: 0;
+}
+.text-heart::before {
+  content: "\2764\ufe0f i love you so much \2764\ufe0f";
+  display: block;
+  text-align: center;
+  margin-bottom: 12px;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.95rem;
+  color: #ff73a4;
+  letter-spacing: 0.12em;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -52%) rotate(-45deg) scale(0.98); }
+  50% { transform: translate(-50%, -52%) rotate(-45deg) scale(1.08); }
+}
+@keyframes float {
+  0%, 100% { transform: translate(-50%, -50%) rotate(-45deg) translateY(0); opacity: 0.95; }
+  50% { transform: translate(-50%, -50%) rotate(-45deg) translateY(-14px); opacity: 0.7; }
+}
+.hidden {
+  display: none;
+}
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -52%) rotate(-45deg) scale(0.98); }
+  50% { transform: translate(-50%, -52%) rotate(-45deg) scale(1.08); }
+}
+@media (max-width: 680px) {
+  .screen {
+    padding: 28px;
+  }
+  .package-card {
+    padding: 26px;
+  }
+  .decrypt-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
